@@ -1,10 +1,12 @@
 package org.example.util;
 
+import java.util.Objects;
+
 public class Buff {
     private final BuffType type;
     private final Double value;
     private final Double coverage;
-    private String description;
+    private final String description;
 
     public Buff(BuffType type, Double value) {
         this(type, value, 1.0, "");
@@ -60,6 +62,17 @@ public class Buff {
         return sb.toString();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Buff buff)) return false;
+        return getType() == buff.getType() && Objects.equals(getValue(), buff.getValue()) && Objects.equals(getCoverage(), buff.getCoverage()) && Objects.equals(getDescription(), buff.getDescription());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getType(), getValue(), getCoverage(), getDescription());
+    }
+
     public BuffType getType() {
         return type;
     }
@@ -74,9 +87,5 @@ public class Buff {
 
     public String getDescription() {
         return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 }

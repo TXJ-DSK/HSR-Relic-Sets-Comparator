@@ -33,6 +33,9 @@ public class Character {
     }
 
     private void validateParameters(Double hp, Double atk, Double def, Double speed, Integer eidolon) {
+        if (hp == null || atk == null || def == null || speed == null || eidolon == null) {
+            throw new IllegalArgumentException("parameter cannot be null.");
+        }
         if (hp < 0) {
             throw new IllegalArgumentException("HP must be at least 0.");
         }
@@ -106,5 +109,12 @@ public class Character {
     }
     public void addTeamBuff(Buff buff) {
         teamBuffs.add(buff);
+    }
+
+    public void removeSelfBuff(Buff buff) {
+        selfBuffs.remove(buff);
+    }
+    public void removeTeamBuff(Buff buff) {
+        teamBuffs.remove(buff);
     }
 }
