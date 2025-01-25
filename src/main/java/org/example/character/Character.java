@@ -1,5 +1,7 @@
 package org.example.character;
 import org.example.util.Buff;
+import org.example.util.ConvertBuff;
+
 import java.util.ArrayList;
 
 public class Character {
@@ -15,6 +17,7 @@ public class Character {
 
     private final ArrayList<Buff> selfBuffs;
     private final ArrayList<Buff> teamBuffs;
+    private final ArrayList<ConvertBuff> inBattleConvertTeamBuffs;
 
     public Character(Double hp, Double atk, Double def, Double speed, Integer eidolon) {
         validateParameters(hp, atk, def, speed, eidolon); // Validate parameters
@@ -25,6 +28,7 @@ public class Character {
         this.eidolon = eidolon;
         this.selfBuffs = new ArrayList<>();
         this.teamBuffs = new ArrayList<>();
+        this.inBattleConvertTeamBuffs = new ArrayList<>();
     }
 
     // Public constructor with default eidolon value
@@ -65,6 +69,7 @@ public class Character {
                 ", eidolon=" + eidolon +
                 ", selfBuffs=" + selfBuffs +
                 ", teamBuffs=" + teamBuffs +
+                ", inBattleConvertTeamBuffs=" + inBattleConvertTeamBuffs +
                 '}';
     }
 
@@ -104,11 +109,18 @@ public class Character {
         return teamBuffs;
     }
 
+    public ArrayList<ConvertBuff> getInBattleConvertTeamBuffs() {
+        return inBattleConvertTeamBuffs;
+    }
+
     public void addSelfBuff(Buff buff) {
         selfBuffs.add(buff);
     }
     public void addTeamBuff(Buff buff) {
         teamBuffs.add(buff);
+    }
+    public void addInBattleConvertTeamBuff(ConvertBuff inBattleConvertTeamBuff) {
+        inBattleConvertTeamBuffs.add(inBattleConvertTeamBuff);
     }
 
     public void removeSelfBuff(Buff buff) {
@@ -116,5 +128,8 @@ public class Character {
     }
     public void removeTeamBuff(Buff buff) {
         teamBuffs.remove(buff);
+    }
+    public void removeInBattleConvertTeamBuff(ConvertBuff inBattleConvertTeamBuff) {
+        inBattleConvertTeamBuffs.remove(inBattleConvertTeamBuff);
     }
 }

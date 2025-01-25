@@ -29,7 +29,7 @@ public class Acheron extends Character {
         if (eidolon >= 2){}
         if (eidolon >= 3){}
         if (eidolon >= 4){
-            super.addTeamBuff(new Buff(BuffType.VULN_ALL, 8.0, "E4-ult"));
+            super.addTeamBuff(new Buff(BuffType.VULN_ALL, 8.0, "Acheron-E4-ult"));
         }
         if (eidolon >= 5){
             super.removeSelfBuff(new Buff(BuffType.RES_REDUCTION, 20.0, "Talent"));

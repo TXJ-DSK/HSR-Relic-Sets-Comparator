@@ -5,6 +5,7 @@ public enum BuffType {
 
     // 小攻击，遗器手，固定攻击
     ATK_FLAT,
+    SPD_FLAT,
 
     // In percentage
 
