@@ -21,6 +21,8 @@ public class MainStat {
         this.sphere = sphere;
         this.rope = rope;
         this.selfBuffs = new ArrayList<>();
+        initSelfBuffs(MainStatType.HP_FLAT, "head");
+        initSelfBuffs(MainStatType.ATK_FLAT, "hands");
         initSelfBuffs(body, "body");
         initSelfBuffs(feet, "feet");
         initSelfBuffs(sphere, "sphere");
