@@ -1,23 +1,23 @@
-package org.example.relicSet.cavern;
+package org.example.relicSet.planar;
 
 import org.example.util.Buff;
 
 import java.util.ArrayList;
 
-public class CavernRelicSet {
+public class PlanarOrnamentSet {
     private final int numPieces;
     private final int stacks;
     private final ArrayList<Buff> selfBuffs;
     private final ArrayList<Buff> teamBuffs;
-    private final boolean hasMatchingEle;
+    private final boolean isBuffActivated;
 
-    public CavernRelicSet(int numPieces, int stacks, boolean hasMatchingEle) {
-        if (numPieces < 1 || numPieces > 4){
-            throw new IllegalArgumentException("Number of pieces of cavern relic must be between 1 and 4");
+    public PlanarOrnamentSet(int numPieces, int stacks, boolean isBuffActivated) {
+        if (numPieces < 1 || numPieces > 2){
+            throw new IllegalArgumentException("Number of pieces of planar ornament must be 1 or 2");
         }
         this.numPieces = numPieces;
         this.stacks = stacks;
-        this.hasMatchingEle = hasMatchingEle;
+        this.isBuffActivated = isBuffActivated;
         this.selfBuffs = new ArrayList<>();
         this.teamBuffs = new ArrayList<>();
     }
@@ -38,24 +38,25 @@ public class CavernRelicSet {
         return teamBuffs;
     }
 
-    public boolean isHasMatchingEle() {
-        return hasMatchingEle;
+    public boolean isBuffActivated() {
+        return isBuffActivated;
     }
 
     @Override
     public String toString() {
-        return "CavernRelicSet{" +
+        return "PlanarOrnamentSet{" +
                 "numPieces=" + numPieces +
                 ", stacks=" + stacks +
                 ", selfBuffs=" + selfBuffs +
                 ", teamBuffs=" + teamBuffs +
-                (hasMatchingEle ? ", hasMatchingEle=" + true : "") +
+                (isBuffActivated ? ", isBuffActivated=" + true : "") +
                 '}';
     }
 
     public void addSelfBuff(Buff buff){
         selfBuffs.add(buff);
     }
+
     public void addTeamBuff(Buff buff){
         teamBuffs.add(buff);
     }

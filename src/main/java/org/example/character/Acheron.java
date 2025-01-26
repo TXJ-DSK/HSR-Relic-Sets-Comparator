@@ -16,6 +16,10 @@ public class Acheron extends Character {
         super.addSelfBuff(new Buff(BuffType.DMG_BOOST_ELEM, 8.0, "Trace-minor"));
         // Thunder Core 雷心 大行迹
         super.addSelfBuff(new Buff(BuffType.DMG_BOOST_ALL, 90.0, "Trace-major"));
+        // The Abyss 奈落 大行迹
+        // Assume 2 Nihility characters other than Acheron in the team / 1 with E2
+        // 假设组队条件完全满足行迹需要
+        super.addSelfBuff(new Buff(BuffType.OTHERS_RATIO, 60.0, "Trace-major"));
 
         // Talent
         super.addSelfBuff(new Buff(BuffType.RES_REDUCTION, 20.0, "Talent"));
