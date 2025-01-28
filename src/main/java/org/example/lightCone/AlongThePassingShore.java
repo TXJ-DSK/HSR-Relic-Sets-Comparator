@@ -4,6 +4,7 @@ import org.example.util.Buff;
 import org.example.util.BuffType;
 
 public class AlongThePassingShore extends LightCone{
+    // 行于流逝的岸，黄泉专武
     public AlongThePassingShore() {
         this(1);
     }
