@@ -6,6 +6,7 @@ import org.example.relic.MainStat;
 import org.example.relicSet.cavern.CavernRelicSet;
 import org.example.relicSet.planar.PlanarOrnamentSet;
 import org.example.util.Buff;
+import org.example.util.ConvertBuff;
 
 import java.util.ArrayList;
 
@@ -22,7 +23,6 @@ public class CharacterBuild {
         this.mainStat = mainStat;
         this.cavernRelicSets = new ArrayList<>();
         this.planarOrnamentSets = new ArrayList<>();
-
     }
 
     public Character getCharacter() {
@@ -57,6 +57,16 @@ public class CharacterBuild {
     }
 
     public void addCavernRelicSet(CavernRelicSet crs) {
+        if (!cavernRelicSets.isEmpty()){
+            int numPiecesSum = 0;
+            for (CavernRelicSet cr : cavernRelicSets) {
+                numPiecesSum += cr.getNumPieces();
+            }
+            if (numPiecesSum + crs.getNumPieces() > 4) {
+                throw new IllegalArgumentException("CavernRelicSets must have at most 4 numPieces");
+            }
+            // TODO: Combine cavern relic sets
+        }
         cavernRelicSets.add(crs);
     }
     public void addPlanarOrnamentSet(PlanarOrnamentSet ornamentSet) {
@@ -100,5 +110,9 @@ public class CharacterBuild {
             }
         }
         return teamBuffs;
+    }
+
+    public ArrayList<ConvertBuff> getInBattleConvertTeamBuffs() {
+        return character.getInBattleConvertTeamBuffs();
     }
 }
