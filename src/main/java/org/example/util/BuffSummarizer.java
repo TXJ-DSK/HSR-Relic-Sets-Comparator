@@ -3,15 +3,15 @@ package org.example.util;
 import java.util.ArrayList;
 
 public class BuffSummarizer {
-    double ATK_FLAT,ATK_RATIO;
-    double HP_FLAT,HP_RATIO;
-    double CRIT_RATE,CRIT_DMG;
-    double DMG_BOOST;
-    double DEF_RED;
-    double RES_RED;
-    double VULN;
-    double TRUE_DMG;
-    double OTHERS_RATIO;
+    private double ATK_FLAT,ATK_RATIO;
+    private double HP_FLAT,HP_RATIO;
+    private double CRIT_RATE,CRIT_DMG;
+    private double DMG_BOOST;
+    private double DEF_RED;
+    private double RES_RED;
+    private double VULN;
+    private double TRUE_DMG;
+    private double OTHERS_RATIO;
 
     public BuffSummarizer(ArrayList<Buff> buffs) {
         for (Buff buff : buffs) {
