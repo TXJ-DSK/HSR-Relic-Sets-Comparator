@@ -16,6 +16,9 @@ import org.example.relicSet.planar.Izumo;
 import org.example.relicSet.planar.Kalpagni;
 import org.example.relicSet.planar.Keel;
 import org.example.relicSet.planar.Vonwacq;
+import org.example.util.Buff;
+import org.example.util.BuffSummarizer;
+import org.example.util.BuffType;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -98,5 +101,33 @@ public class TeamTest {
         characterBuilds.add(characterBuild4);
 
         Team team = new Team(characterBuilds);
+
+        ArrayList<Buff> allBuffs = new ArrayList<>(team.getAttackerSelfBuffs());
+        allBuffs.addAll(team.getSupporterTeamBuffs());
+        BuffSummarizer buffSummarizer = new BuffSummarizer(allBuffs);
+        System.out.println(buffSummarizer.getATK_FLAT());
+        for (Buff buff : allBuffs) {
+            if (buff.getType().equals(BuffType.ATK_FLAT)){
+                System.out.println(buff);
+            }
+        }
+        System.out.println(buffSummarizer.getATK_RATIO());
+        for (Buff buff : allBuffs) {
+            if (buff.getType().equals(BuffType.ATK_RATIO)){
+                System.out.println(buff);
+            }
+        }
+        System.out.println(buffSummarizer.getCRIT_RATE());
+        for (Buff buff : allBuffs) {
+            if (buff.getType().equals(BuffType.CRIT_RATE)){
+                System.out.println(buff);
+            }
+        }
+        System.out.println(buffSummarizer.getDMG_BOOST());
+        for (Buff buff : allBuffs) {
+            if (buff.getType().equals(BuffType.DMG_BOOST_ALL) || buff.getType().equals(BuffType.DMG_BOOST_ELEM)){
+                System.out.println(buff);
+            }
+        }
     }
 }
