@@ -32,6 +32,39 @@ public class BuffSummarizer {
         }
     }
 
+    public BuffSummarizer(ArrayList<Buff> buffs, Buff new_buff) {
+        for (Buff buff : buffs) {
+            switch (buff.getType()) {
+                case ATK_FLAT -> this.ATK_FLAT += buff.getValue();
+                case ATK_RATIO -> this.ATK_RATIO += buff.getValue();
+                case HP_FLAT -> this.HP_FLAT += buff.getValue();
+                case HP_RATIO -> this.HP_RATIO += buff.getValue();
+                case CRIT_RATE -> this.CRIT_RATE += buff.getValue();
+                case CRIT_DMG -> this.CRIT_DMG += buff.getValue();
+                case DMG_BOOST_ALL, DMG_BOOST_ELEM -> this.DMG_BOOST += buff.getValue();
+                case DEF_IGNORE, DEF_REDUCTION -> this.DEF_RED += buff.getValue();
+                case RES_PEN, RES_REDUCTION -> this.RES_RED += buff.getValue();
+                case VULN_ALL, VULN_ELEM -> this.VULN += buff.getValue();
+                case TRUE_DMG -> this.TRUE_DMG += buff.getValue();
+                case OTHERS_RATIO -> this.OTHERS_RATIO += buff.getValue();
+            }
+        }
+        switch (new_buff.getType()) {
+            case ATK_FLAT -> this.ATK_FLAT += new_buff.getValue();
+            case ATK_RATIO -> this.ATK_RATIO += new_buff.getValue();
+            case HP_FLAT -> this.HP_FLAT += new_buff.getValue();
+            case HP_RATIO -> this.HP_RATIO += new_buff.getValue();
+            case CRIT_RATE -> this.CRIT_RATE += new_buff.getValue();
+            case CRIT_DMG -> this.CRIT_DMG += new_buff.getValue();
+            case DMG_BOOST_ALL, DMG_BOOST_ELEM -> this.DMG_BOOST += new_buff.getValue();
+            case DEF_IGNORE, DEF_REDUCTION -> this.DEF_RED += new_buff.getValue();
+            case RES_PEN, RES_REDUCTION -> this.RES_RED += new_buff.getValue();
+            case VULN_ALL, VULN_ELEM -> this.VULN += new_buff.getValue();
+            case TRUE_DMG -> this.TRUE_DMG += new_buff.getValue();
+            case OTHERS_RATIO -> this.OTHERS_RATIO += new_buff.getValue();
+        }
+    }
+
     public double getATK_FLAT() {
         return ATK_FLAT;
     }
