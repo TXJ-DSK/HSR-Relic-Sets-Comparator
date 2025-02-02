@@ -1,5 +1,7 @@
 package org.example.battle;
 
+import org.example.relic.SubStatData;
+import org.example.relic.SubStatType;
 import org.example.util.Buff;
 import org.example.util.BuffType;
 import org.example.util.ConvertBuff;
@@ -23,7 +25,7 @@ public class Team {
 
         retrieveBuffs();
 
-        System.out.println(this.attackerSelfBuffs);
+        //System.out.println(this.attackerSelfBuffs);
         System.out.println(this.supporterTeamBuffs);
     }
 
@@ -69,12 +71,31 @@ public class Team {
         ArrayList<ConvertBuff> convertBuffs = gatherSupporterCovertBuffs();
         for (ConvertBuff c : convertBuffs){
             if (Objects.equals(c.getDescription(), "Sparkle-Skill")){
-                // TODO: Change char stats to non-fixed
                 supporterTeamBuffs.add(new Buff(BuffType.CRIT_DMG
-                        , 169.2 * c.getConvertRatio() * 0.01 + c.getFlat()
-                        , "Sparkle Skill"));
+                        , calculateSparkleSkill(c), "Sparkle Skill"));
             }
         }
+    }
+
+    private double calculateSparkleSkill(ConvertBuff convertBuff) {
+        double sparkleCritDmg = 50.0;
+        for (CharacterBuild characterBuild : characters){
+            if (characterBuild.getCharacter().getClass().getName().equals("org.example.character.Sparkle")){
+                for (Buff buff : characterBuild.getSelfBuffs()){
+                    if (buff.getType() == BuffType.CRIT_DMG){
+                        sparkleCritDmg += buff.getValue();
+                    }
+                }
+            }
+        }
+        for (Buff buff : supporterTeamBuffs){
+            if (buff.getDescription().equals("Relic-Keel-2")){
+                sparkleCritDmg += buff.getValue();
+            }
+        }
+        // 5 Crit DMG sub stats
+        sparkleCritDmg += SubStatData.getSubStatValue(SubStatType.CRIT_DMG) * 5;
+        return sparkleCritDmg * convertBuff.getConvertRatio() * 0.01 + convertBuff.getFlat();
     }
 
     public ArrayList<CharacterBuild> getCharacters() {
